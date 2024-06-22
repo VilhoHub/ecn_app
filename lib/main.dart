@@ -1,3 +1,4 @@
+import 'package:ecn_app/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,12 +11,86 @@ class ECNApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'ECN App',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: const HomePage(),
+      home: Scaffold(
+        appBar: AppBar(
+            backgroundColor: Colors.blue,
+            iconTheme: const IconThemeData(color: Colors.white)),
+        //TODO: REVISIT
+        endDrawer: Drawer(
+          child: ListView(
+            children: [
+              const DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                ),
+                child: Column(
+                  children: [
+                    CircleAvatar(
+                      radius: 40,
+                      backgroundImage: AssetImage(
+                          'assets/ecn_logo.jpg'), // Placeholder for logo
+                    ),
+                    SizedBox(height: 10),
+                    Text('ECN Navigation',
+                        style: TextStyle(color: Colors.white, fontSize: 20)),
+                  ],
+                ),
+              ),
+              ListTile(
+                title: const Text('Voter Education'),
+                leading: const Icon(Icons.school),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const VoterEducationPage()),
+                  );
+                },
+              ),
+              ListTile(
+                title: const Text('Elections'),
+                leading: const Icon(Icons.how_to_vote),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ElectionsPage()),
+                  );
+                },
+              ),
+              ListTile(
+                title: const Text('Political Parties'),
+                leading: const Icon(Icons.groups),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const PoliticalPartiesPage()),
+                  );
+                },
+              ),
+              ListTile(
+                title: const Text('Media Releases'),
+                leading: const Icon(Icons.announcement),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const MediaReleasesPage()),
+                  );
+                },
+              ),
+            ],
+          ),
+        ),
+        body: SafeArea(child: HomeScreen()),
+      ),
     );
   }
 }
@@ -27,7 +102,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ECN App', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+        title: const Text('ECN App',
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
       ),
       drawer: Drawer(
         child: ListView(
@@ -40,10 +116,12 @@ class HomePage extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 40,
-                    backgroundImage: AssetImage('assets/ecn_logo.jpg'), // Placeholder for logo
+                    backgroundImage: AssetImage(
+                        'assets/ecn_logo.jpg'), // Placeholder for logo
                   ),
                   SizedBox(height: 10),
-                  Text('ECN Navigation', style: TextStyle(color: Colors.white, fontSize: 20)),
+                  Text('ECN Navigation',
+                      style: TextStyle(color: Colors.white, fontSize: 20)),
                 ],
               ),
             ),
@@ -53,7 +131,8 @@ class HomePage extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const VoterEducationPage()),
+                  MaterialPageRoute(
+                      builder: (context) => const VoterEducationPage()),
                 );
               },
             ),
@@ -63,7 +142,8 @@ class HomePage extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const ElectionsPage()),
+                  MaterialPageRoute(
+                      builder: (context) => const ElectionsPage()),
                 );
               },
             ),
@@ -73,7 +153,8 @@ class HomePage extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const PoliticalPartiesPage()),
+                  MaterialPageRoute(
+                      builder: (context) => const PoliticalPartiesPage()),
                 );
               },
             ),
@@ -83,7 +164,8 @@ class HomePage extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const MediaReleasesPage()),
+                  MaterialPageRoute(
+                      builder: (context) => const MediaReleasesPage()),
                 );
               },
             ),
@@ -97,9 +179,11 @@ class HomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(height: 20),
-              Text('Welcome to the ECN App', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+              Text('Welcome to the ECN App',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
               SizedBox(height: 10),
-              Text('Stay informed about elections, voter education, political parties, and more.',
+              Text(
+                  'Stay informed about elections, voter education, political parties, and more.',
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 16)),
             ],
@@ -124,7 +208,8 @@ class VoterEducationPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Voter Education', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+            const Text('Voter Education',
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
             const SizedBox(height: 10),
             const Text(
               'The ECN aims to foster and promote a democratic culture and good governance through voter education. This includes understanding voting requirements, the concepts of multi-party democracy, civil rights, and the electoral process.',
@@ -138,11 +223,11 @@ class VoterEducationPage extends StatelessWidget {
             const SizedBox(height: 5),
             const Text(
               '• Conditions and requirements for voting.\n'
-                  '• Multi-party democracy and proportional representation.\n'
-                  '• Namibian elections Code of Conduct.\n'
-                  '• Civil rights and responsibilities.\n'
-                  '• Types of elections in Namibia.\n'
-                  '• Voter registration process.',
+              '• Multi-party democracy and proportional representation.\n'
+              '• Namibian elections Code of Conduct.\n'
+              '• Civil rights and responsibilities.\n'
+              '• Types of elections in Namibia.\n'
+              '• Voter registration process.',
               style: TextStyle(fontSize: 16),
             ),
             const Divider(height: 40),
@@ -188,7 +273,8 @@ class ElectionsPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Elections', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+            const Text('Elections',
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
             const SizedBox(height: 10),
             const Text(
               'Get information about upcoming elections, past election results, and how to participate.',
@@ -237,7 +323,8 @@ class PoliticalPartiesPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Political Parties', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+            const Text('Political Parties',
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
             const SizedBox(height: 10),
             const Text(
               'Information about registered political parties, their policies, and how they participate in elections.',
@@ -286,7 +373,8 @@ class MediaReleasesPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Media Releases', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+            const Text('Media Releases',
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
             const SizedBox(height: 10),
             const Text(
               'Stay updated with the latest news and announcements from the Electoral Commission of Namibia.',
