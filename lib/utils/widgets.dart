@@ -1,19 +1,23 @@
 import 'package:ecn_app/main.dart';
+import 'package:ecn_app/presentation/resources/colour_manager.dart';
+import 'package:ecn_app/presentation/resources/font_manager.dart';
+import 'package:ecn_app/presentation/resources/string_manager.dart';
+import 'package:ecn_app/presentation/resources/value_manager.dart';
 import 'package:flutter/material.dart';
 
 Text infoBoxText(String text,
-    {double fontSize = 14.0, FontWeight fontWeight = FontWeight.bold}) {
+    {double fontSize = FontSize.f14,
+    FontWeight fontWeight = FontWeightManager.bold}) {
   return Text(
     text,
     style: TextStyle(
-      color: Colors.white,
+      color: ColourManager.secondary,
       fontWeight: fontWeight,
       fontSize: fontSize,
     ),
   );
 }
 
-//TODO: ONPRESSED
 GestureDetector homeCard(String text, Color colour, VoidCallback onTap) {
   return GestureDetector(
     onTap: onTap,
@@ -24,11 +28,19 @@ GestureDetector homeCard(String text, Color colour, VoidCallback onTap) {
           text,
           textAlign: TextAlign.center,
           style: const TextStyle(
-            fontSize: 20.0,
+            fontSize: FontSize.f20,
           ),
         ),
       ),
     ),
+  );
+}
+
+Icon androidIOSTrailing() {
+  return Icon(
+    ECNApp.platform_isIOS
+        ? Icons.arrow_forward_ios_outlined
+        : Icons.arrow_forward_outlined,
   );
 }
 
@@ -40,22 +52,18 @@ ListTile voterRegistrationTiles(
   Size mediaQuery = MediaQuery.of(context).size;
   return ListTile(
     contentPadding: EdgeInsets.symmetric(
-      vertical: mediaQuery.height * 0.01,
-      horizontal: mediaQuery.width * 0.03,
+      vertical: mediaQuery.height * AppPadding.p0_01,
+      horizontal: mediaQuery.width * AppPadding.p0_03,
     ),
     title: Text(
       text,
       style: const TextStyle(
         fontWeight: FontWeight.bold,
-        fontSize: 16.0,
+        fontSize: FontSize.f16,
       ),
     ),
-    trailing: Icon(
-      ECNApp.platform_isIOS
-          ? Icons.arrow_forward_ios_outlined
-          : Icons.arrow_forward_outlined,
-    ),
-    iconColor: Colors.blue,
+    trailing: androidIOSTrailing(),
+    iconColor: ColourManager.primary,
     onTap: onTap,
   );
 }
@@ -63,10 +71,10 @@ ListTile voterRegistrationTiles(
 Padding voterRegistrationDivider(BuildContext context) {
   return Padding(
     padding: EdgeInsets.symmetric(
-      horizontal: MediaQuery.of(context).size.width * 0.03,
+      horizontal: MediaQuery.of(context).size.width * AppPadding.p0_03,
     ),
-    child: const Divider(
-      color: Colors.grey,
+    child: Divider(
+      color: ColourManager.item,
     ),
   );
 }
@@ -75,7 +83,7 @@ Row bulletList(String text) {
   return Row(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
-      const Text("• "),
+      const Text(AppStrings.bullet),
       Expanded(
         child: Text(text),
       ),

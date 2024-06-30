@@ -1,9 +1,13 @@
+import 'package:ecn_app/presentation/resources/colour_manager.dart';
+import 'package:ecn_app/presentation/resources/font_manager.dart';
+import 'package:ecn_app/presentation/resources/string_manager.dart';
+import 'package:ecn_app/presentation/resources/value_manager.dart';
 import 'package:ecn_app/screens/home/voter_registration_screen.dart';
 import 'package:ecn_app/utils/widgets.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
-  static const String ROUTE_NAME = '/';
+  static const String ROUTE_NAME = AppStrings.homeRoute;
   const HomeScreen({super.key});
 
   @override
@@ -16,20 +20,20 @@ class HomeScreen extends StatelessWidget {
         body: SizedBox(
           width: mediaQuery.width,
           child: Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(AppPadding.p10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
                   margin: EdgeInsets.symmetric(
-                    vertical: mediaQuery.height * 0.01,
+                    vertical: mediaQuery.height * AppPadding.p0_01,
                   ),
                   decoration: BoxDecoration(
-                    color: Colors.blue,
-                    borderRadius: BorderRadius.circular(10.0),
+                    color: ColourManager.primary,
+                    borderRadius: BorderRadius.circular(AppRadius.r10),
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.all(15.0),
+                    padding: const EdgeInsets.all(AppPadding.p15),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -37,31 +41,31 @@ class HomeScreen extends StatelessWidget {
                           width: mediaQuery.width,
                         ),
                         infoBoxText(
-                          'Total number of registered voters',
-                          fontSize: 16.0,
+                          AppStrings.totalNumber,
+                          fontSize: FontSize.f16,
                         ),
                         infoBoxText(
                           '395.8K',
-                          fontSize: 45.0,
+                          fontSize: FontSize.f45,
                         ),
                         infoBoxText(
                           '+35% month over month',
-                          fontWeight: FontWeight.normal,
+                          fontWeight: FontWeightManager.regular,
                         ),
                         Align(
                           alignment: Alignment.bottomRight,
                           child: TextButton(
                             onPressed: () {},
                             style: TextButton.styleFrom(
-                              backgroundColor: Colors.grey.shade300,
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 25.0),
+                              backgroundColor: ColourManager.item.shade300,
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: AppPadding.p25),
                             ),
-                            child: const Text(
-                              'View',
+                            child: Text(
+                              AppStrings.view,
                               style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 16.0,
+                                color: ColourManager.black,
+                                fontSize: FontSize.f16,
                               ),
                             ),
                           ),
@@ -74,16 +78,16 @@ class HomeScreen extends StatelessWidget {
                   child: GridView(
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
+                      crossAxisCount: ValueManager.v3,
                     ),
                     children: [
                       homeCard(
-                        'Voter Information',
+                        AppStrings.voterInfo,
                         const Color(0xFFFEBB57),
                         () {},
                       ),
                       homeCard(
-                        "Voter Registration",
+                        AppStrings.voterReg,
                         const Color(0xFFB3E1D9),
                         () {
                           Navigator.pushNamed(
@@ -93,37 +97,37 @@ class HomeScreen extends StatelessWidget {
                         },
                       ),
                       homeCard(
-                        'Candidate Information',
+                        AppStrings.candidateInfo,
                         const Color(0xFFF397D9),
                         () {},
                       ),
                       homeCard(
-                        'Elections',
+                        AppStrings.elections,
                         const Color(0xFF06A982),
                         () {},
                       ),
                       homeCard(
-                        'Voter Education',
+                        AppStrings.voterEdu,
                         const Color(0xFFDADADA),
                         () {},
                       ),
                       homeCard(
-                        'Latest Updates',
+                        AppStrings.latestUpdates,
                         const Color(0xFF6CB43F),
                         () {},
                       ),
                       homeCard(
-                        'Registration Points',
+                        AppStrings.regPoints,
                         const Color(0xFFF17171),
                         () {},
                       ),
                       homeCard(
-                        'Media Releases',
+                        AppStrings.mediaReleases,
                         const Color(0xFFFFE145),
                         () {},
                       ),
                       homeCard(
-                        'Election Results',
+                        AppStrings.electionRes,
                         const Color(0xFFB3E1D9),
                         () {},
                       ),

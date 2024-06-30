@@ -1,3 +1,5 @@
+import 'package:ecn_app/presentation/resources/string_manager.dart';
+import 'package:ecn_app/presentation/resources/theme_manager.dart';
 import 'package:ecn_app/screens/home/home_screen.dart';
 import 'package:ecn_app/screens/home/voter_registration_screen.dart';
 import 'package:flutter/material.dart';
@@ -16,18 +18,8 @@ class ECNApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'ECN App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        scaffoldBackgroundColor: Colors.white,
-        appBarTheme: AppBarTheme(
-          backgroundColor: Colors.blue,
-          foregroundColor: Colors.white,
-          centerTitle: true,
-          iconTheme: const IconThemeData(color: Colors.white),
-        ),
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
+      title: AppStrings.appTitle,
+      theme: getApplicationTheme(),
       initialRoute: HomeScreen.ROUTE_NAME,
       routes: {
         HomeScreen.ROUTE_NAME: (context) => const HomeScreen(),
