@@ -1,5 +1,7 @@
-import 'package:ecn_app/screens/home_screen.dart';
+import 'package:ecn_app/screens/home/home_screen.dart';
+import 'package:ecn_app/screens/home/voter_registration_screen.dart';
 import 'package:flutter/material.dart';
+import 'dart:io' show Platform;
 
 void main() {
   runApp(const ECNApp());
@@ -8,6 +10,8 @@ void main() {
 class ECNApp extends StatelessWidget {
   const ECNApp({super.key});
 
+  static final platform_isIOS = (Platform.isIOS) ? true : false;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,82 +19,21 @@ class ECNApp extends StatelessWidget {
       title: 'ECN App',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: Colors.white,
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.blue,
+          foregroundColor: Colors.white,
+          centerTitle: true,
+          iconTheme: const IconThemeData(color: Colors.white),
+        ),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Scaffold(
-        appBar: AppBar(
-            backgroundColor: Colors.blue,
-            iconTheme: const IconThemeData(color: Colors.white)),
-        //TODO: REVISIT
-        endDrawer: Drawer(
-          child: ListView(
-            children: [
-              const DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                ),
-                child: Column(
-                  children: [
-                    CircleAvatar(
-                      radius: 40,
-                      backgroundImage: AssetImage(
-                          'assets/ecn_logo.jpg'), // Placeholder for logo
-                    ),
-                    SizedBox(height: 10),
-                    Text('ECN Navigation',
-                        style: TextStyle(color: Colors.white, fontSize: 20)),
-                  ],
-                ),
-              ),
-              ListTile(
-                title: const Text('Voter Education'),
-                leading: const Icon(Icons.school),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const VoterEducationPage()),
-                  );
-                },
-              ),
-              ListTile(
-                title: const Text('Elections'),
-                leading: const Icon(Icons.how_to_vote),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const ElectionsPage()),
-                  );
-                },
-              ),
-              ListTile(
-                title: const Text('Political Parties'),
-                leading: const Icon(Icons.groups),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const PoliticalPartiesPage()),
-                  );
-                },
-              ),
-              ListTile(
-                title: const Text('Media Releases'),
-                leading: const Icon(Icons.announcement),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const MediaReleasesPage()),
-                  );
-                },
-              ),
-            ],
-          ),
-        ),
-        body: SafeArea(child: HomeScreen()),
-      ),
+      initialRoute: HomeScreen.ROUTE_NAME,
+      routes: {
+        HomeScreen.ROUTE_NAME: (context) => const HomeScreen(),
+        VoterRegistrationScreen.ROUTE_NAME: (context) =>
+            const VoterRegistrationScreen()
+      },
     );
   }
 }
